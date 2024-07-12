@@ -18,9 +18,24 @@
     <!-- Styles -->
     @livewireStyles
 </head>
+{{--Usarmos alpine--}}
+<body class="font-sans antialiased" x-data = "{
+    sidebarOpen: false
+}"
 
-<body class="font-sans antialiased">
+:class ="{
+'overflow-y-hidden' :sidebarOpen
+}"
+>
+{{--Para que aparezca una pantalla negra al lado del side bar--}}
+<div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden"
+    style="display: none;"
+    x-show="sidebarOpen"
+    x-on:click ="sideOpen = false">
+    {{--agregamos directiva de alpine--}}
 
+
+</div>
 {{--llamamos a navigation --}}
 @include('layouts.partials.admin.navigation')
 {{--llamamos a sidebar --}}
