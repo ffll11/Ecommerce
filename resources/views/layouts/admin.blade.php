@@ -1,4 +1,4 @@
-{{-- @props(['breadcrumbs' => []]) --}}
+@props(['breadcrumbs' => []]) 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -13,52 +13,63 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!--Font Awesome-->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     @livewireStyles
 </head>
-{{--Usarmos alpine--}}
-<body class="font-sans antialiased" x-data = "{
-    sidebarOpen: false
-}"
 
-{{--Agregamos clases dinamicas--}}
-{{--Para que el scroll se oculte cuando el sidebar aparezca--}}
-:class ="{
-'overflow-y-hidden' :sidebarOpen
-}"
+<body class="font-sans antialiased" x-data="{ sidebarOpen: false }" :class="{ 'overflow-y-hidden': sidebarOpen }">
+    
+    <!-- Overlay when sidebar is open (for small screens) -->
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" 
+         style="display: none;" 
+         x-show="sidebarOpen"
+         x-on:click="sidebarOpen = false">
+    </div>
 
->
-{{--Para que aparezca una pantalla negra al lado del side bar--}}
-<div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden"
-    style="display: none;" {{--div debe estar oculto por defecto --}}
-    x-show="sidebarOpen"
-    x-on:click ="sidebarOpen = false">
-    {{--agregamos directiva de alpine--}}
-</div>
+    <!-- Navigation -->
+    @include('layouts.partials.admin.navigation')
 
-{{--llamamos a navigation --}}
-@include('layouts.partials.admin.navigation')
-{{--llamamos a sidebar --}}
-@include('layouts.partials.admin.sidebar')
+    <!-- Sidebar -->
+    @include('layouts.partials.admin.sidebar')
 
+    <!-- Main content -->
     <div class="p-4 sm:ml-64">
         <div class="mt-14">
 
-          {{--   @include('layouts.partials.admin.breadcrumb') --}}
+            <div class="flex justify-between items-center">
+                <!-- Breadcrumbs -->
+                @include('layouts.partials.admin.breadcrumb')
 
+                @isset($action)
+                    <div>
+                        {{$action}}
+                    </div>
+                @endisset
+            </div>
+            <div>
+
+            </div>
             <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700">
-                {{--Definimos sloth--}}
                 {{$slot}}
             </div>
-
         </div>
     </div>
-    @livewireScripts
-</body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    @livewireScripts
+
+    @stack('js')
+
+    @if (session('swal'))
+        <script>
+            Swal.fire({!!json_encode(session('swal'))!!});
+        </script>
+    @endif
+</body>
 </html>
