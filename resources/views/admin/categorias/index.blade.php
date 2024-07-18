@@ -4,9 +4,9 @@
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => ''
+        'name' => 'Categoria',
     ]
-]" --}}>
+]" --}} >
 <x-slot name="action">
     <a href="{{ route('admin.categorias.create') }}" class="btn btn-blue">
         Nuevo
@@ -63,6 +63,6 @@
             <span class="font-medium">Info alert!</span> Todavía no hay categorias de productos registradas.
         </div>
     </div>
-@endif
 
+@endif
 </x-admin-layout>

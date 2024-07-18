@@ -4,10 +4,10 @@
         'route' => route('admin.dashboard'),
     ],
     [
-        'name' => 'Familias'
+        'name' => 'Familias',
         'route' => route('admin.familias.index'),
     ]
-]" --}}>
+]" --}} >
 
     <x-slot name="action">
         <a href="{{ route('admin.familias.create') }}" class="btn btn-blue">
@@ -44,7 +44,7 @@
                                 {{ $familia->Familia }}
                             </td>
                             <td class="px-6 py-4">
-                            {{ $familia->categoria->Categoria }}
+                            {{ optional($familia->categoria)->Categoria }}
                             </td>
 
                             <td class="px-6 py-4">

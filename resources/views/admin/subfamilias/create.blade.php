@@ -14,20 +14,21 @@
 ]" --}}
 >
 
-<div class="card">
-    <form action="{{route('admin.familias.store')}}" method="POST">
+
+{{-- <div class="card">
+    <form action="{{route('admin.subfamilias.store')}}" method="POST">
         @csrf
 
         <x-validation-errors class="mb-4"> </x-validation-errors>
 
         <div class="mb-4">
             <x-label class="mb-2">
-                Categoria
+                Familia
             </x-label>
 
-            <x-select name="Categoria_id" class="w-full">
-                @foreach ($categorias as $categoria)
-                    <option value="{{$categoria->Id}}">{{$categoria->Categoria}}</option>
+            <x-select name="Familia_id" class="w-full">
+                @foreach ($familias as $familia)
+                    <option value="{{$familia->Id}}">{{$familia->Familia}}</option>
                 @endforeach
             </x-select>
 
@@ -37,7 +38,7 @@
                 Nombre
             </x-label>
 
-            <x-input class="w-full" placeholder="Ingrese el nombre de la familia" name="Familia" value="{{old('Familia')}}" />
+            <x-input class="w-full" placeholder="Ingrese el nombre de la subfamilia" name="SubFamilia" value="{{old('SubFamilia')}}" />
 
         </div>
         <div class="flex justify-end">
@@ -46,5 +47,8 @@
             </x-button>
         </div>
     </form>
-</div>
+</div> --}}
+
+@livewire('admin.subfamilias.subfamilia-create')
+
 </x-admin-layout>

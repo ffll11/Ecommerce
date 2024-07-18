@@ -1,4 +1,5 @@
-@props(['breadcrumbs' => []]) 
+@props(['breadcrumbs' => []])
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -15,7 +16,7 @@
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -24,10 +25,10 @@
 </head>
 
 <body class="font-sans antialiased" x-data="{ sidebarOpen: false }" :class="{ 'overflow-y-hidden': sidebarOpen }">
-    
+
     <!-- Overlay when sidebar is open (for small screens) -->
-    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden" 
-         style="display: none;" 
+    <div class="fixed inset-0 bg-gray-900 bg-opacity-50 z-20 sm:hidden"
+         style="display: none;"
          x-show="sidebarOpen"
          x-on:click="sidebarOpen = false">
     </div>

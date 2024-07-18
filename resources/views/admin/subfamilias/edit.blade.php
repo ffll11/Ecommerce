@@ -1,6 +1,6 @@
 <x-admin-layout>
     <div class="card">
-        <form action="{{ route('admin.familias.update', $familia) }}" method="POST">
+        <form action="{{ route('admin.subfamilias.update', $subfamilia) }}" method="POST">
             @csrf
             @method('PUT')
 
@@ -8,12 +8,12 @@
 
             <div class="mb-4">
                 <x-label class="mb-2">
-                    Categoria
+                    Familia
                 </x-label>
 
-                <x-select name="categoria_id" class="w-full">
-                    @foreach ($categorias as $categoria)
-                        <option value="{{ $categoria->Id }}" @selected(old('Categoria_id',$familia->Categoria_id )== $categoria->Id)>{{ $categoria->Categoria }}
+                <x-select name="Familia_id" class="w-full">
+                    @foreach ($familias as $familia)
+                        <option value="{{ $familia->Id }}" @selected(old('Familia_id',$subfamilia->Familia_id ) == $familia->Id)>{{ $familia->Familia }}
                         </option>
                     @endforeach
                 </x-select>
@@ -24,8 +24,8 @@
                     Nombre
                 </x-label>
 
-                <x-input class="w-full" placeholder="Ingrese el nombre de la familia" name="Familia"
-                    value="{{ old('Familia', $familia->Familia) }}" />
+                <x-input class="w-full" placeholder="Ingrese el nombre de la subfamilia" name="Subfamilia"
+                    value="{{ old('Subfamilia', $subfamilia->SubFamilia) }}" />
 
             </div>
 
@@ -39,7 +39,7 @@
             </div>
         </form>
 
-        <form action="{{ route('admin.familias.destroy', $familia) }}" method="POST" id="delete-form">
+        <form action="{{ route('admin.subfamilias.destroy', $subfamilia) }}" method="POST" id="delete-form">
             @csrf
 
             @method('DELETE')
@@ -60,7 +60,7 @@
                         confirmButtonText: "Si, eliminalo!"
                     }).then((result) => {
                         if (result.isConfirmed) {
-                            
+
                             document.getElementById('delete-form').submit();
 
                         }

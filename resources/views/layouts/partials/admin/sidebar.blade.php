@@ -19,6 +19,12 @@
             'route' => route('admin.categorias.index'),
             'active' => request()->routeIs('admin.categorias.*'),
         ],
+        [
+            'name' =>'Subfamilia',
+            'icon' => 'fa-solid fa-box-open',
+            'route' => route('admin.subfamilias.index'),
+            'active' => request()->routeIs('admin.subfamilias.*'),
+        ]
 
     ];
 @endphp
